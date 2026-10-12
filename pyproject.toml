@@ -1,0 +1,29 @@
+[project]
+name = "tigerdata-archiver"
+version = "0.1.0"
+description = "Archive directories from a Slurm cluster to Princeton TigerData over Globus HTTPS, in parallel, then free the local space."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "globus-cli>=3.30",
+    "globus-sdk>=3.40",
+    "python-dotenv>=1.0",
+    "submitit>=1.5",
+    "tqdm>=4.66",
+]
+
+[project.scripts]
+tda = "tigerdata_archiver.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tigerdata_archiver"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
